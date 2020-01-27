@@ -13,6 +13,6 @@ collections:
       preview: false
     fields:
       - { name: featured_image, label: Image, widget: image }
-      - { name: date, label: Date, widget: datetime, dateFormat: "dddd MMMM YYYY" }
+      - { name: date, label: Date, widget: datetime, dateFormat: "dddd D MMMM YYYY" }
       - { name: title, label: Title }
       - { name: body, label: Body, widget: markdown }
