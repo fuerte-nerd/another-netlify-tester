@@ -1,4 +1,21 @@
 const path = require(`path`)
+const slugify = require("slugify")
+
+const { createFilePath } = require("gatsby-source-filesystem")
+
+exports.onCreateNode = ({ node, boundActionCreators, getNode }) => {
+  const { createNodeField } = boundActionCreators
+
+  if (node.internal.type === `MarkdownRemark`) {
+    const value = createFilePath({ node, getNode })
+    createNodeField({
+      name: `slug`,
+      node,
+      value,
+    })
+  }
+}
+
 exports.createPages = async ({ actions, graphql, reporter }) => {
   const { createPage } = actions
   const blogPostTemplate = path.resolve(`src/templates/blogTemplate.js`)
@@ -10,8 +27,12 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
       ) {
         edges {
           node {
+            fields {
+              slug
+            }
             frontmatter {
               path
+              title
             }
           }
         }
@@ -24,8 +45,11 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     return
   }
   result.data.allMarkdownRemark.edges.forEach(({ node }) => {
+    //   const slug = slugify(node.frontmatter.title, {
+    //       remove: /[*+~.()'"!:@\/]/g
+    //   })
     createPage({
-      path: node.frontmatter.path,
+      path: node.fields.slug,
       component: blogPostTemplate,
       context: {}, // additional data can be passed via context
     })
