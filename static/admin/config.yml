@@ -15,4 +15,18 @@ collections:
       - { name: featured_image, label: Image, widget: image }
       - { name: date, label: Date, widget: datetime, dateFormat: "dddd D MMMM YYYY" }
       - { name: title, label: Title }
-      - { name: body, label: Body, widget: markdown }
+      - { name: english_body, label: English, widget: markdown }
+      - { name: spanish_body, label: Spanish, widget: markdown }
+  # - name: multilang
+  #   label: MultiLang
+  #   folder: multilang
+  #   create: true
+  #   slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+  #   editor:
+  #     preview: false
+  #   fields:
+  #     - { name: featured_image, label: Image, widget: image }
+  #     - { name: date, label: Date, widget: datetime, dateFormat: "dddd D MMMM YYYY" }
+  #     - { name: title, label: Title }
+  #     - { name: english_body, label: English, widget: markdown }
+  #     - { name: spanish_body, label: English, widget: markdown }
